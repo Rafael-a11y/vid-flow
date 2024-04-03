@@ -74,6 +74,40 @@ function filtrarPorCategoria(filtro)
     }
 }
 
+async function novo()
+{
+    const update = 
+    {
+        titulo: 'MKXL X1 com KORNABA666',
+        descricao: '13 vvisualizações',
+        url: "https://www.youtube.com/embed/4Ek5Oiw5yUg",
+        imagem: "https://i.ibb.co/hKCMjgv/Mattahan-Umicons-Games-48.png",
+        categoria: "Games"
+    };
+        
+    const options = 
+    {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(update)
+    };
+    try
+    {
+        const requisicao = await fetch("http://localhost:3000/videos", options);
+        const resposta = await requisicao.json();
+    }
+    catch(erro)
+    {
+        videosContainer.innerHTML = 
+            `<li class='videos__item'>
+                <p align='center'>Houve um erro ao tentar salvar o novo vídeo -> ${erro}</p>
+            </li>`
+        ;
+    }
+}
+
 botoesCategoria.forEach(botao =>
 {
     const nomeCategoria = botao.getAttribute("name");
@@ -81,6 +115,7 @@ botoesCategoria.forEach(botao =>
 });
 
 barraDePesquisa.addEventListener("input", filtrarPesquisa);
+// novo();
 buscar(mostrar);
 
 
