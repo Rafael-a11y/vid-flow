@@ -19,18 +19,7 @@ async function buscar(callback)
     }
 }
 
-async function novoVideo(){   
-    try
-    {
-        const novo = await fetch("http://localhost:3000/videos", {method: "POST", body: JSON.stringify({titulo: "MKXL X1 com KORNABA666", descricao : "11 visualizações  há 5 anos", url : "https://www.youtube.com/watch?v=4Ek5Oiw5yUg", imagem: "https://imgbin.com/png/BjUyYYx7/mortal-kombat-png?raw=true", id: "14", categoria: "Games"}), headers: {"Content-Type" : "application/json"}});
-        const resposta = await novo.json();
-        console.log(resposta);
-    }
-    catch(error)
-    {
-        console.log("O novo vídeo não pode ser gerado corretamente", error);
-    }
-}
+
 
 function mostrar(videos)
 {   
@@ -61,7 +50,6 @@ function filtrarPesquisa()
         const titulo = video.querySelector(".descricao-video>h3").textContent.toLowerCase();
         video.style.display = (titulo.includes(valorFiltro) || barraDePesquisa.value == "") ? "block" : "none";
     }
-    
 }
 
 function filtrarPorCategoria(filtro)
@@ -74,40 +62,6 @@ function filtrarPorCategoria(filtro)
     }
 }
 
-async function novo()
-{
-    const update = 
-    {
-        titulo: 'MKXL X1 com KORNABA666',
-        descricao: '13 vvisualizações',
-        url: "https://www.youtube.com/embed/4Ek5Oiw5yUg",
-        imagem: "https://i.ibb.co/hKCMjgv/Mattahan-Umicons-Games-48.png",
-        categoria: "Games"
-    };
-        
-    const options = 
-    {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(update)
-    };
-    try
-    {
-        const requisicao = await fetch("http://localhost:3000/videos", options);
-        const resposta = await requisicao.json();
-    }
-    catch(erro)
-    {
-        videosContainer.innerHTML = 
-            `<li class='videos__item'>
-                <p align='center'>Houve um erro ao tentar salvar o novo vídeo -> ${erro}</p>
-            </li>`
-        ;
-    }
-}
-
 botoesCategoria.forEach(botao =>
 {
     const nomeCategoria = botao.getAttribute("name");
@@ -115,7 +69,6 @@ botoesCategoria.forEach(botao =>
 });
 
 barraDePesquisa.addEventListener("input", filtrarPesquisa);
-// novo();
 buscar(mostrar);
 
 
