@@ -8,7 +8,7 @@ async function buscar(callback)
     try
     {
         // const busca = await fetch("http://localhost:3000/videos");
-        const busca = await fetch("https://rafael-a11y.github.io/mock-api-videos/videos.json");
+        const busca = await fetch("https://rafael-a11y.github.io/vid-flow/backend/videos.json");
         const resposta = await busca.json();
         callback(resposta.videos);
     }
