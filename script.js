@@ -108,6 +108,6 @@ botoesCategoria.forEach(botao =>
 
 barraDePesquisa.addEventListener("input", filtrarPesquisa);
 buscar(mostrar);
-novoVideo();
+// novoVideo();
 
 
