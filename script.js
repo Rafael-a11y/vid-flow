@@ -1,14 +1,16 @@
 const videosContainer = document.querySelector(".videos__container");
 const barraDePesquisa = document.querySelector(".pesquisar__input");
 const botoesCategoria = document.querySelectorAll(".superior__item");
+const endpoint = "https://rafael-a11y.github.io/mock-api-videos/videos.json";
 
 async function buscar(callback)
 {
     try
     {
-        const busca = await fetch("http://localhost:3000/videos");
-        const videos = await busca.json();
-        callback(videos);
+        // const busca = await fetch("http://localhost:3000/videos");
+        const busca = await fetch("https://rafael-a11y.github.io/mock-api-videos/videos.json");
+        const resposta = await busca.json();
+        callback(resposta.videos);
     }
     catch(error)
     {
