@@ -6,7 +6,7 @@ async function buscar(callback)
 {
     try
     {
-        const busca = await fetch("https://rafael-a11y.github.io/mock-api-videos/videos.json");
+        const busca = await fetch("https://rafael-a11y.github.io/vid-flow/backend/videos.json");
         const resposta = await busca.json();
         callback(resposta.videos);
     }
@@ -42,7 +42,7 @@ async function novoVideo()
 
     try
     {
-        const requisicao = await fetch(`https://rafael-a11y.github.io/mock-api-videos/videos.json`, options);
+        const requisicao = await fetch(`https://rafael-a11y.github.io/vid-flow/backend/videos.json`, options);
         const resultado = await requisicao.json();
         console.log(resultado.videos);
     }
