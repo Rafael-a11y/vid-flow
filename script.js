@@ -6,9 +6,9 @@ async function buscar(callback)
 {
     try
     {
-        const busca = await fetch("http://localhost:3000/videos");
-        const videos = await busca.json();
-        callback(videos);
+        const busca = await fetch("https://rafael-a11y.github.io/mock-api-videos/videos.json");
+        const resposta = await busca.json();
+        callback(resposta.videos);
     }
     catch(error)
     {
@@ -16,6 +16,44 @@ async function buscar(callback)
         <li class='videos__item'>
             <p align='center'>Houve um erro ao tentar carregar o vídeo -> ${error}</p>
         </li>`;
+    }
+}
+
+async function novoVideo()
+{
+    const update = 
+    {
+        titulo: "MKXL X1 com KORNABA666",
+        descricao: "13 mil visualizações",
+        url: `https://www.youtube.com/embed/4Ek5Oiw5yUg`,
+        imagem: `https://i.ibb.co/hKCMjgv/Mattahan-Umicons-Games-48.png`,
+        categoria: "Games"
+    };
+
+    const options = 
+    {
+        method: "POST",
+        headers: 
+        {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(update)
+    };
+
+    try
+    {
+        const requisicao = await fetch(`https://rafael-a11y.github.io/mock-api-videos/videos.json`, options);
+        const resultado = await requisicao.json();
+        console.log(resultado.videos);
+    }
+    catch(erro)
+    {
+        videosContainer.innerHTML = 
+        `
+        <li class='videos__item'>
+            <p align='center'>Houve um erro ao tentar salvar o novo vídeo: ${erro.message}</p>
+        </li>
+        `;
     }
 }
 
@@ -70,5 +108,19 @@ botoesCategoria.forEach(botao =>
 
 barraDePesquisa.addEventListener("input", filtrarPesquisa);
 buscar(mostrar);
+novoVideo();
+// return [
+//     {
+//       // matching all API routes
+//       source: '/:path*',
+//       headers: [
+//         { key: 'Access-Control-Allow-Credentials', value: 'true' },
+//         { key: 'Access-Control-Allow-Origin', value: '*' },
+//         { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
+//         { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization' },
+//       ],
+//     },
+//   ];
+// },
 
 
